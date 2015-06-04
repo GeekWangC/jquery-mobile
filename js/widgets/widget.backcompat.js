@@ -48,7 +48,7 @@ if ( $.mobileBackcompat !== false ) {
 		},
 
 		_classesToOption: function( value ) {
-			if ( this.classProp && ( typeof value[ this.classProp ] === "string" ) ) {
+			if ( this.classProp ) {
 				var that = this,
 					valueArray = value[ this.classProp ].match( classSplitterRegex ) || [];
 
@@ -95,9 +95,11 @@ if ( $.mobileBackcompat !== false ) {
 				prop = this.classProp,
 				that = this;
 
-			if ( prop && typeof original.classes[ prop ] === "string" &&
-					typeof this.options.classes[ prop ] === "string" ) {
-				currentClasses = this.options.classes[ prop ].match( classSplitterRegex ) || [];
+			if ( prop ) {
+				currentClasses =
+					this.options.classes[ prop ] ?
+					this.options.classes[ prop ].match( classSplitterRegex ) :
+					[];
 
 				// If the classes option value has diverged from the default, then its value takes
 				// precedence, causing us to update all the style options to reflect the contents
